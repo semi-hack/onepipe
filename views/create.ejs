@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <script>
+        var form = document.getElementById('myForm')
+
+        form.addEventListener('submit', function(event){
+            event.preventDefault()
+
+            const formdata = new FormData(this);
+
+            const url = 'http://localhost:4440/cr'
+
+            fetch(url, {
+                method: 'post',
+                body: formdata
+            }).then(function(response) {
+                console.log(response)
+            }).catch(function(error){
+                console.error(error);
+            })
+        })
+    </script>
+    <body>
+        <div class="container">
+            <div class="title"> create account </div>
+            <form class="form", id="myForm">
+                <div class="input_details">
+                    <div class="input-box">
+                        <span class="details">firstname</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">surname</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">email</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">mobile_no</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">accountName</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">dob</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">title</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">address_line_1</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">city</span>
+                        <input type="text", placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">state</span>
+                        <input type="text", placeholder="">
+                    </div>
+                </div>
+                <div class="gender_details">
+                    <input type="radio", name="gender" id="M">
+                    &nbsp;
+                    <span id="M">Male</span>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio", name="gender" id="M">
+                    &nbsp;
+                    <span id="F">Female</span>
+                </div>
+                <div class="button">
+                    <input type="submit",  value="create">
+                </div>
+            </form>
+        </div>
+        <div class="results">
+            <div class = "account_name"><span><%- account_name %></span></div>
+            <div class = "description">
+              <div class = "account_number"><%- account_number %></div>
+            </div>
+        </div>
+    </body>
+</html>
