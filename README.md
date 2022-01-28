@@ -2,13 +2,14 @@
  onepipe technical challenge
 # Running application locally
  1. Clone the repository
-   ==https://github.com/semi-hack/onepipe.git==
+   https://github.com/semi-hack/onepipe.git
 
  2. Install dependencies
-    ==npm install==
+    npm install
 
  3. Run
-    ==npm run dev==
+    npm run dev
+    
 ## ROUTES
 | Request |             Route               |
 |:--------|:--------------------------------|
