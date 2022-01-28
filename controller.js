@@ -18,6 +18,7 @@ const createAccount = async (req, res) => {
     const word = crypto.randomBytes(7).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"
     const hased = crypto.createHash('md5').update(value).digest("hex")
+    console.log(req.body)
 
     const response = await axios.post('https://api.onepipe.io/v2/transact', {
         request_ref: word,
@@ -32,7 +33,7 @@ const createAccount = async (req, res) => {
             transaction_ref_parent: null,
             amount: 0,
             customer: {
-                customer_ref: req.body._id,
+                customer_ref: "53",
                 firstname: req.body.firstname,
                 surname: req.body.surname,
                 email: req.body.email,

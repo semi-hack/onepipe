@@ -4,79 +4,64 @@
 
     </head>
     <script>
-        var form = document.getElementById('myForm')
+        // function handleSubmit(event) {
+        //     event.preventDefault();
+            
+        //     const data = new FormData(event.target)
 
-        form.addEventListener('submit', function(event){
-            event.preventDefault()
+        //     const value = Object.fromEntries(data.entries());
 
-            const formdata = new FormData(this);
+        //     console.log({ value })
+        // }
 
-            const url = 'http://localhost:4440/cr'
-
-            fetch(url, {
-                method: 'post',
-                body: formdata
-            }).then(function(response) {
-                console.log(response)
-            }).catch(function(error){
-                console.error(error);
-            })
-        })
+        // const form = document.querySelector('form');
+        // form.addEventListener('submit', handleSubmit);
     </script>
     <body>
         <div class="container">
             <div class="title"> create account </div>
-            <form class="form", id="myForm">
+            <form action="/cr" method="post" class="form">
                 <div class="input_details">
                     <div class="input-box">
                         <span class="details">firstname</span>
-                        <input type="text", placeholder="">
+                        <input type="text" name="firstname">
                     </div>
                     <div class="input-box">
                         <span class="details">surname</span>
-                        <input type="text", placeholder="">
+                        <input type="text"  value="" name="surname">
                     </div>
                     <div class="input-box">
                         <span class="details">email</span>
-                        <input type="text", placeholder="">
+                        <input type="text" value="" name="email">
                     </div>
                     <div class="input-box">
                         <span class="details">mobile_no</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="mobile_no">
                     </div>
                     <div class="input-box">
                         <span class="details">accountName</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="account_name">
                     </div>
                     <div class="input-box">
                         <span class="details">dob</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="dob">
                     </div>
                     <div class="input-box">
                         <span class="details">title</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="title">
                     </div>
                     <div class="input-box">
                         <span class="details">address_line_1</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="address_line_1">
                     </div>
                     <div class="input-box">
                         <span class="details">city</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="city">
                     </div>
                     <div class="input-box">
                         <span class="details">state</span>
-                        <input type="text", placeholder="">
+                        <input type="text", placeholder="" value="" name="state">
                     </div>
-                </div>
-                <div class="gender_details">
-                    <input type="radio", name="gender" id="M">
-                    &nbsp;
-                    <span id="M">Male</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="radio", name="gender" id="M">
-                    &nbsp;
-                    <span id="F">Female</span>
                 </div>
                 <div class="button">
                     <input type="submit",  value="create">
