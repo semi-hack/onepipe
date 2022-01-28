@@ -1,6 +1,5 @@
 import axios from "axios"
 import crypto from "crypto";
-import Encryption from "node_triple_des";
 
 const encrypt = (secretKey, plainText) => {
     const bufferedKey = Buffer.from(secretKey, 'utf16le');
@@ -18,7 +17,6 @@ const createAccount = async (req, res) => {
     const word = crypto.randomBytes(7).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"
     const hased = crypto.createHash('md5').update(value).digest("hex")
-    console.log(req.body)
 
     const response = await axios.post('https://api.onepipe.io/v2/transact', {
         request_ref: word,
@@ -59,17 +57,12 @@ const createAccount = async (req, res) => {
         }
     })
 
-    console.log(response.data)
-
     if (response.data.status === 'Successful') {
-        res.render('account', {
+       return res.render('account', {
             account_name: response.data.data.provider_response.account_name,
             account_number: response.data.data.provider_response.account_number,
         })
-        // return res.status(200).json({
-        //     success: true,
-        //     data: response.data
-        // })
+      
     } else {
         return res.status(400).json({
             success: false,
@@ -96,7 +89,7 @@ const getBalance = async (req, res) => {
             transaction_desc: "Create account transaction",
             amount: 0,
             customer: {
-                customer_ref: req.body._id,
+                customer_ref: "34",
                 firstname: req.body.firstname,
                 surname: req.body.surname,
                 email: req.body.email,

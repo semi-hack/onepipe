@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head></head>
+    <style>
+    </style>
     <body>
         <div class="results">
-            <div class = "account_name"><span><%- account_name %></span></div>
+            <div class = "account_name"><span><b>ACCOUNT NAME = </b><%- account_name %></span></div>
             <div class = "description">
-              <div class = "account_number"><%- account_number %></div>
+              <div class = "account_number"><b>ACCOUNT NUMBER = </b><%- account_number %></div>
             </div>
-
-            <div class="button">
-                <input type="submit",  value="get balance">
-                &nbsp;
-                <input type="submit",  value="get statement">
-                &nbsp;
-                <input type="submit",  value="collect">
+            &nbsp;
+            <div class="box">
+                <form action="/balance", method="post", class="form">
+                    <div class="input_details">
+                        <div class="input-box">
+                            <span class="details">firstname</span>
+                            <input type="text" name="firstname">
+                        </div>
+                        <div class="input-box">
+                            <span class="details">surname</span>
+                            <input type="text"  value="" name="surname">
+                        </div>
+                        <div class="input-box">
+                            <span class="details">email</span>
+                            <input type="text" value="" name="email">
+                        </div>
+                        <div class="input-box">
+                            <span class="details">mobile_no</span>
+                            <input type="text", placeholder="" value="" name="mobile_no">
+                        </div>
+                        <div class="button">
+                            <input type="submit",  value="get balance">
+                        </div>
+                </form>
+            </div>
             </div>
         </div>
     </body>

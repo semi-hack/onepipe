@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/cr', first.createAccount);
+router.post('/create', first.createAccount);
 router.post('/balance', first.getBalance);
 router.post('/statement', first.getStatement);
 router.post('/collect', first.collect);

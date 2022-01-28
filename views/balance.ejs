@@ -3,9 +3,34 @@
     <head>
 
     </head>
-    <bod>
+    <body>
         <div class="results">
-            <div class = "available_name"><span><%- available_balance %></span></div>
+            <div class = "available_name"><span><b>AVAILABLE BALANCE = </b><%- available_balance %></span></div>
         </div>
-    </bod>
+        &nbsp;&nbsp;
+        <div class="box">
+            <form action="/statement", method="post", class="form">
+                <div class="input_details">
+                    <div class="input-box">
+                        <span class="details">firstname</span>
+                        <input type="text" name="firstname">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">surname</span>
+                        <input type="text"  value="" name="surname">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">email</span>
+                        <input type="text" value="" name="email">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">mobile_no</span>
+                        <input type="text", placeholder="" value="" name="mobile_no">
+                    </div>
+                    <div class="button">
+                        <input type="submit",  value="get statement">
+                    </div>
+            </form>
+        </div>
+    </body>
 </html>

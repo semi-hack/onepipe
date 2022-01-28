@@ -3,10 +3,47 @@
     <head></head>
     <body>
         <div class="results">
-            <div class = "closing_balance"><span><%- closing_balance %></span></div>
+            <div class = "closing_balance"><span><b>CLOSING BALANCE = </b><%- closing_balance %></span></div>
             <div class = "description">
-              <div class = "opening_balance"><%- opening_balance %></div>
+              <div class = "opening_balance"><span><b>OPENING BALANCE = </b><%- opening_balance %></span></div>
             </div>
+        </div>
+        &nbsp;&nbsp;
+        <div class="box">
+            <form action="/collect", method="post", class="form">
+                <div class="input_details">
+                    <div class="input-box">
+                        <span class="details">firstname</span>
+                        <input type="text" name="firstname">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">surname</span>
+                        <input type="text"  value="" name="surname">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">email</span>
+                        <input type="text" value="" name="email">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">mobile_no</span>
+                        <input type="text", placeholder="" value="" name="mobile_no">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">accountNumber</span>
+                        <input type="text", placeholder="" value="" name="accountNumber">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">bankCode</span>
+                        <input type="text", placeholder="" value="" name="bankCode">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">amount</span>
+                        <input type="text", placeholder="" value="" name="amount">
+                    </div>
+                    <div class="button">
+                        <input type="submit",  value="collect">
+                    </div>
+            </form>
         </div>
     </body>
 </html>
