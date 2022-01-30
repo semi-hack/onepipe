@@ -16,7 +16,7 @@ const encrypt = (secretKey, plainText) => {
 // Create Account...
 const createAccount = async (req, res) => {
     const word = crypto.randomBytes(7).toString('hex');
-    const value = word+";"+"KgMs87tKCuA8BTEj"
+    const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
     const response = await axios.post('https://api.onepipe.io/v2/transact', {
@@ -52,7 +52,7 @@ const createAccount = async (req, res) => {
 
     }}, {
         headers: {
-            Authorization: 'Bearer LYJkfbTERDaX9rEcHubF_d988c25b17504a9699140341edf54435',
+            Authorization: `Bearer ${process.env.API_KEY}`,
             Signature: hased
 
         }
@@ -76,7 +76,7 @@ const createAccount = async (req, res) => {
 // Get Balance...
 const getBalance = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
-    const value = word+";"+"KgMs87tKCuA8BTEj"
+    const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
     const response = await axios.post('https://api.onepipe.io/v2/transact', {
@@ -101,7 +101,7 @@ const getBalance = async (req, res) => {
         },
     }, {
         headers: {
-            Authorization: 'Bearer LYJkfbTERDaX9rEcHubF_d988c25b17504a9699140341edf54435',
+            Authorization: `Bearer ${process.env.API_KEY}`,
             Signature: hased
 
         }
@@ -126,7 +126,7 @@ const getBalance = async (req, res) => {
 // Get Statement..
 const getStatement = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
-    const value = word+";"+"KgMs87tKCuA8BTEj"
+    const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
 
@@ -155,7 +155,7 @@ const getStatement = async (req, res) => {
         }
     }, {
         headers: {
-            Authorization: 'Bearer LYJkfbTERDaX9rEcHubF_d988c25b17504a9699140341edf54435',
+            Authorization: `Bearer ${process.env.API_KEY}`,
             Signature: hased
 
         }
@@ -181,11 +181,11 @@ const getStatement = async (req, res) => {
 // Collect..
 const collect = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
-    const value = word+";"+"KgMs87tKCuA8BTEj"
+    const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
     const combination = req.body.accountNumber + ";" + req.body.bankCode
-    const Evalue = encrypt("KgMs87tKCuA8BTEj", combination)
+    const Evalue = encrypt(process.env.API_SECRET, combination)
 
     let final_amount = req.body.amount * 10
 
@@ -214,7 +214,7 @@ const collect = async (req, res) => {
         }
     }, {
         headers: {
-            Authorization: 'Bearer LYJkfbTERDaX9rEcHubF_d988c25b17504a9699140341edf54435',
+            Authorization: `Bearer ${process.env.API_KEY}`,
             Signature: hased
 
         }

@@ -11,9 +11,13 @@
     >**npm run dev**
     
 ## ROUTES
-| Request |             Route               |
+| Request |             Routes              |
 |:--------|:--------------------------------|
 | POST    | http://localhost:4440/create    |
 | POST    | http://localhost:4440/balance   |
 | POST    | http://localhost:4440/statement |
 | POST    | http://localhost:4440/collect   |
+
+
+## AUTHORS
+### Semiloore Akinlo
