@@ -1,6 +1,7 @@
 import axios from "axios"
 import crypto from "crypto";
 
+// TripleDes Encryption...
 const encrypt = (secretKey, plainText) => {
     const bufferedKey = Buffer.from(secretKey, 'utf16le');
 
@@ -12,7 +13,7 @@ const encrypt = (secretKey, plainText) => {
     return cipher.update(plainText, 'utf8', 'base64') + cipher.final('base64');
 }
 
-
+// Create Account...
 const createAccount = async (req, res) => {
     const word = crypto.randomBytes(7).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"
@@ -72,6 +73,7 @@ const createAccount = async (req, res) => {
 
 }
 
+// Get Balance...
 const getBalance = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"
@@ -121,6 +123,7 @@ const getBalance = async (req, res) => {
     }
 }
 
+// Get Statement..
 const getStatement = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"
@@ -175,6 +178,7 @@ const getStatement = async (req, res) => {
     }
 }
 
+// Collect..
 const collect = async (req, res) => {
     const word = crypto.randomBytes(5).toString('hex');
     const value = word+";"+"KgMs87tKCuA8BTEj"

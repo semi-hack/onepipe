@@ -1,5 +1,5 @@
 import express from 'express';
-import first from './controller.js'
+import controller from './controller.js'
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -9,15 +9,10 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/create', first.createAccount);
-router.post('/balance', first.getBalance);
-router.post('/statement', first.getStatement);
-router.post('/collect', first.collect);
-
-router
-
-
-
+router.post('/create', controller.createAccount);
+router.post('/balance', controller.getBalance);
+router.post('/statement', controller.getStatement);
+router.post('/collect', controller.collect);
 
 
 export default router
