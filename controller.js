@@ -1,5 +1,7 @@
 import axios from "axios"
 import crypto from "crypto";
+import validate from "./utils.js";
+
 
 // TripleDes Encryption...
 const encrypt = (secretKey, plainText) => {
@@ -12,6 +14,8 @@ const encrypt = (secretKey, plainText) => {
     const cipher = crypto.createCipheriv('des-ede3-cbc', newKey, IV).setAutoPadding(true);
     return cipher.update(plainText, 'utf8', 'base64') + cipher.final('base64');
 }
+
+
 
 // Create Account...
 const createAccount = async (req, res) => {
@@ -75,37 +79,47 @@ const createAccount = async (req, res) => {
 
 // Get Balance...
 const getBalance = async (req, res) => {
-    const word = crypto.randomBytes(5).toString('hex');
+    const word = crypto.randomBytes(7).toString('hex');
+    const words = crypto.randomBytes(7).toString('hex');
     const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
+
     const response = await axios.post('https://api.onepipe.io/v2/transact', {
-        request_ref: word,
-        request_type: "get_balance",
-        auth: {
-            auth_provider: "Demoprovider"
+        "request_ref": word,
+        "request_type": "get_balance",
+        "auth": {
+            "auth_provider": "Demoprovider"
         },
-        transaction: {
-            mock_mode: "inspect",
-            transaction_ref: word,
-            transaction_desc: "Create account transaction",
-            amount: 0,
-            customer: {
-                customer_ref: "34",
-                firstname: req.body.firstname,
-                surname: req.body.surname,
-                email: req.body.email,
-                mobile_no: req.body.mobile_no
+        "transaction": {
+            "mock_mode": "inspect",
+            "transaction_ref": word,
+            "transaction_desc": "random transaction",
+            "amount": 0,
+            "customer": {
+                "customer_ref": "35",
+                "firstname": req.body.firstname,
+                "surname": req.body.surname,
+                "email": req.body.email,
+                "mobile_no": req.body.mobile_no
             },
-            details: null,
+            "details": null
         },
     }, {
         headers: {
-            Authorization: `Bearer ${process.env.API_KEY}`,
-            Signature: hased
-
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.API_KEY}`,
+            'Signature': hased,
         }
     })
+
+    if(response.data.status === 'WaitingForOTP') {
+        console.log('here');
+        let type = 'get_balance'
+        let ref = word;
+        const responses = await validate(type, ref)
+        return res.status(200).json(responses.data);
+    }
 
     if (response.data.status === 'Successful') {
         res.render('balance', {
@@ -125,7 +139,7 @@ const getBalance = async (req, res) => {
 
 // Get Statement..
 const getStatement = async (req, res) => {
-    const word = crypto.randomBytes(5).toString('hex');
+    const word = crypto.randomBytes(7).toString('hex');
     const value = word+";"+process.env.API_SECRET
     const hased = crypto.createHash('md5').update(value).digest("hex")
 
@@ -134,12 +148,14 @@ const getStatement = async (req, res) => {
         request_ref: word,
         request_type: "get_statement",
         auth: {
-            auth_provider: "Demoprovider"
+            type: "bank.account", 
+            auth_provider: "DemoProvider",
+            route_mode: null
         },
         transaction: {
             mock_mode: "inspect",
             transaction_ref: word,
-            transaction_desc: "get statement",
+            transaction_desc: "get_statement",
             customer: {
                 customer_ref: req.body._id,
                 firstname: req.body.firstname,
@@ -147,10 +163,11 @@ const getStatement = async (req, res) => {
                 email: req.body.email,
                 mobile_no: req.body.mobile_no
             },
+            // account_number: 200001999,
             amount: 0,
             details: {
                 start_date: "2022-01-27",
-                end_date: "2022-01-27"
+                end_date: "2022-01-27",
             }
         }
     }, {
@@ -160,6 +177,14 @@ const getStatement = async (req, res) => {
 
         }
     })
+
+    if(response.data.status === 'WaitingForOTP') {
+        console.log('here');
+        let type = 'get_statement'
+        let ref = word;
+        const responses = await validate(type, ref)
+        return res.status(200).json(responses.data);
+    }
 
     if (response.data.status === 'Successful') {
         res.render('statement', {
@@ -220,6 +245,14 @@ const collect = async (req, res) => {
         }
     })
 
+    if(response.data.status === 'WaitingForOTP') {
+        console.log('here');
+        let type = 'collect'
+        let ref = word;
+        const responses = await validate(type, ref)
+        return res.status(200).json(responses.data);
+    }
+
     if (response.data.status === 'Successful') {
         res.render('collect', {
             message: response.data.message,
@@ -237,5 +270,7 @@ const collect = async (req, res) => {
     }
 
 }
+
+
 
 export default { createAccount, getBalance, getStatement, collect }
